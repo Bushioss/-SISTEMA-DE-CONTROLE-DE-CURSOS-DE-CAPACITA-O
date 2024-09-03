@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     </link>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
     <h1></h1>
+    <input type="text" id="pesquisaNome" placeholder="Filtrar por nome" oninput="pesquisaNomes()">
+    <input type="text" id="inBuscaCurso" placeholder="Filtrar por matéria"oninput="pesquisaCursos()">
     <table id="outTabela">
         <tr>
             <th>Aluno</th>
@@ -22,9 +22,8 @@
             <th>Resultado</th>
         </tr>
     </table>
-
     <link rel="stylesheet" href="/Stylesheet/tabela.css">
     <script src="/JavaScript/dados.js"></script>
-    <script src="/JavaScript/script.js"></script>
+    <script src="/JavaScript/tabela.js"></script>
 </body>
 </html>
