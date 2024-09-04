@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovados</title>
+</head>
+<body>
+    
+    Selecione a Matéria: <select id="seletor">
+        <option value="" disabled selected> ->Selecione<- </option>
+        <option value="pythonPandas">Python Pandas: tratando e analisando dados</option>
+        <option value="javaScriptInterfaces" selected>JavaScript: interfaces e Herança em Orientação a Objetos</option>
+        <option value="reactNative">React Native: criando um app</option>
+        <option value="bootstrap">Bootstrap 4: criando uma landing page responsiva"</option>
+        <option value="Kotling-e-Spring">Kotlin e Spring: segurança e infraestrutura</option>
+        <option value="Reconhecimento-imagens">Reconhecimento de imagens: Twitter e Computer Vision API</option>
+        <option value="logicaProgUm">Lógica de programação I: crie programas com Javascript e HTML</option>
+        <option value="html5-ccs3">HTML5 e CSS3: crie uma página da Web</option>
+        <option value="uxDesing">UX: metodologias práticas para designers</option>
+        <option value="modelagemBDR">Modelagem de banco de dados relacional: modelagem lógica e física</option>
+      </select>
+    <input type="checkbox" id="checkbox" value="aprovados">
+        <label for="aprovados">Apenas Aprovados</label>
+    <button id="btEnviar">Buscar</button>
+    <table>
+        <tr>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Participação</th>
+            <th>Média Ponderada</th>
+            <th>% Faltas</th>
+            <th>Resultado</th>
+        </tr>
+    </table>
+    <script src="/JavaScript/dados.js"></script>
+    <script src="/JavaScript/switch-aprovados.js"></script>
+</body>
+</html>
