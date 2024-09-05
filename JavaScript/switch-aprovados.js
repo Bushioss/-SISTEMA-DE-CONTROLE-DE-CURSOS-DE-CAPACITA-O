@@ -13,13 +13,13 @@
 const inSelect = document.getElementById('seletor');
 const inCheckbox = document.getElementById('checkbox');
 const btEnviar = document.getElementById('btEnviar');
-const tdTabela = document.getElementById("outTabela");
+const outTabela = document.getElementById("outTabela");
+var Aprovado = 'Aprovado'
 
 btEnviar.addEventListener("click", checkar);
 
 function checkar() {
-    console.log(inSelect.value);
-    console.log(inCheckbox.value);
+
     outTabela.innerHTML = ""
     let trColunas = document.createElement("tr");
     let initTdAlunos = document.createElement("td");
@@ -47,23 +47,205 @@ function checkar() {
     trColunas.appendChild(initTdFalta);
     trColunas.appendChild(initTdResultado);
     outTabela.appendChild(trColunas);
-    for (var i = 0; i < aluno.length; i++) {
-      let outAlunos = aluno[i];
-      let outCursos = curso[i];
-      let outProva1 = prova1[i];
-      let outProva2 = prova2[i];
-      let outParticipacao = participacao[i];
-      let outFalta = falta[i];
-        inSelect
-        inCheckbox
-      switch (inSelect, inCheckbox) {
-        case(inSelect == "pythonPandas" && inCheckbox == "Aprovados"):
-            alert()
-            break;
+
+    for (var i = 0; i < vetAluno.length; i++) {
+      let listAlunos = vetAluno[i];
+      let listCursos = vetCurso[i];
+      let listProva1 = vetProva1[i];
+      let listProva2 = vetProva2[i];
+      let listParticipacao = vetParticipacao[i];
+      let listFaltas = vetFalta[i];
+      //transforma os dados em Number para o calculo da média ponderada
+      listProva1 = Number(listProva1);
+      listProva2 = Number(listProva2);
+      listParticipacao = Number(listParticipacao);
+      //calcula  a média
+      let mediaPonderada = (listProva1 * 0.2 + listProva2 * 0.4 + listParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
+      let estaAprovado = false
+      if (listFaltas >= 13) {
+      } else if (mediaPonderada >= 60) {
+        estaAprovado = true
+      }
       
-        default:
-            break;
-      } 
+      let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
+      if (inSelect.value == "Python Pandas: tratando e analisando dados" && inCheckbox.checked) {
+        if (listCursos.includes(inSelect.value) && Aprovado == outAprovado) {
+          let trTabela = document.createElement("tr");
+          let tdAlunos = document.createElement("td");
+          let tdCursos = document.createElement("td");
+          let tdProva1 = document.createElement("td");
+          let tdProva2 = document.createElement("td");
+          let tdParticipacao = document.createElement("td");
+          let tdMedia = document.createElement("td");
+          let tdFalta = document.createElement("td");
+          let tdResultado = document.createElement("td");
+          //preenche as célucas com os dados
+          tdAlunos.textContent = listAlunos
+          tdCursos.textContent = listCursos
+          tdProva1.textContent = listProva1
+          tdProva2.textContent = listProva2
+          tdParticipacao.textContent = listParticipacao
+          tdMedia.textContent = mediaPonderada.toFixed(2)
+          tdFalta.textContent = listFaltas
+          tdResultado.textContent = outAprovado
+
+          trTabela.appendChild(tdAlunos);
+          trTabela.appendChild(tdCursos);
+          trTabela.appendChild(tdProva1);
+          trTabela.appendChild(tdProva2);
+          trTabela.appendChild(tdParticipacao);
+          trTabela.appendChild(tdMedia);
+          trTabela.appendChild(tdFalta);
+          trTabela.appendChild(tdResultado);
+
+          //monta a tabela
+          outTabela.appendChild(trTabela);
+
+        }
+      }
+      else {
+        if (listCursos.includes(inSelect.value)) {
+          let trTabela = document.createElement("tr");
+          let tdAlunos = document.createElement("td");
+          let tdCursos = document.createElement("td");
+          let tdProva1 = document.createElement("td");
+          let tdProva2 = document.createElement("td");
+          let tdParticipacao = document.createElement("td");
+          let tdMedia = document.createElement("td");
+          let tdFalta = document.createElement("td");
+          let tdResultado = document.createElement("td");
+          //preenche as célucas com os dados
+          tdAlunos.textContent = listAlunos
+          tdCursos.textContent = listCursos
+          tdProva1.textContent = listProva1
+          tdProva2.textContent = listProva2
+          tdParticipacao.textContent = listParticipacao
+          tdMedia.textContent = mediaPonderada.toFixed(2)
+          tdFalta.textContent = listFaltas
+          tdResultado.textContent = outAprovado
+          trTabela.appendChild(tdAlunos);
+          trTabela.appendChild(tdCursos);
+          trTabela.appendChild(tdProva1);
+          trTabela.appendChild(tdProva2);
+          trTabela.appendChild(tdParticipacao);
+          trTabela.appendChild(tdMedia);
+          trTabela.appendChild(tdFalta);
+          trTabela.appendChild(tdResultado);
+          //monta a tabela
+          outTabela.appendChild(trTabela);
+        }
+      }
+      if(inSelect.value == "JavaScript: interfaces e Herança em Orientação a Objetos" && inCheckbox.checked){
+        if(listCursos.includes(inSelect.value) && Aprovado == outAprovado){
+          let trTabela = document.createElement("tr");
+          let tdAlunos = document.createElement("td");
+          let tdCursos = document.createElement("td");
+          let tdProva1 = document.createElement("td");
+          let tdProva2 = document.createElement("td");
+          let tdParticipacao = document.createElement("td");
+          let tdMedia = document.createElement("td");
+          let tdFalta = document.createElement("td");
+          let tdResultado = document.createElement("td");
+          //preenche as célucas com os dados
+          tdAlunos.textContent = listAlunos
+          tdCursos.textContent = listCursos
+          tdProva1.textContent = listProva1
+          tdProva2.textContent = listProva2
+          tdParticipacao.textContent = listParticipacao
+          tdMedia.textContent = mediaPonderada.toFixed(2)
+          tdFalta.textContent = listFaltas
+          tdResultado.textContent = outAprovado
+          trTabela.appendChild(tdAlunos);
+          trTabela.appendChild(tdCursos);
+          trTabela.appendChild(tdProva1);
+          trTabela.appendChild(tdProva2);
+          trTabela.appendChild(tdParticipacao);
+          trTabela.appendChild(tdMedia);
+          trTabela.appendChild(tdFalta);
+          trTabela.appendChild(tdResultado);
+          //monta a tabela
+          outTabela.appendChild(trTabela);
+        }
+      }
+      else {
+        if (listCursos.includes(inSelect.value)) {
+          let trTabela = document.createElement("tr");
+          let tdAlunos = document.createElement("td");
+          let tdCursos = document.createElement("td");
+          let tdProva1 = document.createElement("td");
+          let tdProva2 = document.createElement("td");
+          let tdParticipacao = document.createElement("td");
+          let tdMedia = document.createElement("td");
+          let tdFalta = document.createElement("td");
+          let tdResultado = document.createElement("td");
+          //preenche as célucas com os dados
+          tdAlunos.textContent = listAlunos
+          tdCursos.textContent = listCursos
+          tdProva1.textContent = listProva1
+          tdProva2.textContent = listProva2
+          tdParticipacao.textContent = listParticipacao
+          tdMedia.textContent = mediaPonderada.toFixed(2)
+          tdFalta.textContent = listFaltas
+          tdResultado.textContent = outAprovado
+          trTabela.appendChild(tdAlunos);
+          trTabela.appendChild(tdCursos);
+          trTabela.appendChild(tdProva1);
+          trTabela.appendChild(tdProva2);
+          trTabela.appendChild(tdParticipacao);
+          trTabela.appendChild(tdMedia);
+          trTabela.appendChild(tdFalta);
+          trTabela.appendChild(tdResultado);
+          //monta a tabela
+          outTabela.appendChild(trTabela);
+        }
+      }
+        }
+      if (inSelect.value == "reactNative" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "bootstrap" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "Kotling-e-Spring" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "Reconhecimento-imagens" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "logicaProgUm" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "html5-ccs3" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "uxDesing" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
+      if (inSelect.value == "modelagemBDR" && inCheckbox.checked) {
+        
+      }
+      else{
+
+      }
 }
-}
-//resolver botao
