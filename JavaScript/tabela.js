@@ -4,7 +4,7 @@ const inBuscaCurso = document.getElementById('inBuscaCurso');
 const outTabela = document.getElementById("outTabela");
 //Tabela Geral gerada incialmente
 function tabelaGeral() {
-  for (var i = 0; i < aluno.length; i++) {
+  for (var i = 0; i < vetAluno.length; i++) {
     let listAlunos = vetAluno[i];
     let listCursos = vetCurso[i];
     let listProva1 = vetProva1[i];
@@ -94,7 +94,7 @@ function pesquisaNomes() {
   trColunas.appendChild(initTdResultado);
   outTabela.appendChild(trColunas);
   
-  for (var i = 0; i < aluno.length; i++) {
+  for (var i = 0; i < vetAluno.length; i++) {
     //guarda o elemento presente no index no valor i atual
     let listAlunos = vetAluno[i];
     let listCursos = vetCurso[i];
@@ -185,7 +185,7 @@ function pesquisaCursos() {
   trColunas.appendChild(initTdFalta);
   trColunas.appendChild(initTdResultado);
   outTabela.appendChild(trColunas);
-  for (var i = 0; i < aluno.length; i++) {
+  for (var i = 0; i < vetAluno.length; i++) {
     //guarda o elemento presente no index no valor i atual
     let listAlunos = vetAluno[i];
     let listCursos = vetCurso[i];
