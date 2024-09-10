@@ -1,61 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
+    </link>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>Plataforma de Cursos Online</title>
-    
+    <title>Document</title>
 </head>
 <body>
-    <header>
-        <h1>Plataforma de Cursos Online </h1>
-        <img id="logo" src="logo.webp" alt="Logo da Plataforma">
-    </header>
-    <div class="container">
-        <h2>Listagem de Alunos</h2>
-        <div class="filter">
-            <input type="text" id="filter-name" placeholder="Filtrar por nome do aluno">
-            <input type="text" id="filter-course" placeholder="Filtrar por curso">                     
-            <button id="apply-filters">Aplicar Filtros</button>
-            <button id="clear-filters">Limpar Filtros</button>
-
-             <!--<button onclick="applyFilters()">Aplicar Filtros</button>-->
-
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome do Aluno</th>
-                    <th>Curso</th>
-                    <th>Nota 1</th>
-                    <th>Nota 2</th>
-                    <th>Nota 3</th>
-                    <th>Média Ponderada</th>
-                    <th>Faltas</th>
-                    <th>% de Faltas</th>
-                    <th>Resultado</th>
-                </tr>
-            </thead>
-            <tbody id="student-list">
-                <!-- Dados dos alunos serão inseridos aqui -->
-            </tbody>
-        </table>
-        <h2>Relatório de Aprovados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome do Aluno</th>
-                    <th>Curso</th>
-                    <th>Média Ponderada</th>
-                </tr>
-            </thead>
-            <tbody id="approved-list">
-                <!-- Dados dos alunos aprovados serão inseridos aqui -->
-            </tbody>
-        </table>
-    </div>
-    <script src="index.js"></script>
+    <h1></h1>
+    <input type="text" id="inPesquisaNome" placeholder="Filtrar por nome" oninput="pesquisaNomes()">
+    <input type="text" id="inBuscaCurso" placeholder="Filtrar por matéria"oninput="pesquisaCursos()">
+    <table id="outTabela">
+        <tr>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Participação</th>
+            <th>Média Ponderada</th>
+            <th>% Faltas</th>
+            <th>Resultado</th>
+        </tr>
+    </table>
+    <link rel="stylesheet" href="/-SISTEMA-DE-CONTROLE-DE-CURSOS-DE-CAPACITA-O/">
+    <script src="/JavaScript/dados.js"></script>
+    <script src="/JavaScript/tabela.js"></script>
 </body>
 </html>
