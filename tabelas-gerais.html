@@ -24,6 +24,8 @@
     <input type="checkbox" id="checkbox" value="aprovados">
         <label for="aprovados">Apenas Aprovados</label>
     <button id="btEnviar">Buscar</button>
+    <input type="text" id="inPesquisaNome" placeholder="Filtrar por nome" oninput="pesquisaNomes()">
+    <input type="text" id="inBuscaCurso" placeholder="Filtrar por matéria"oninput="pesquisaCursos()">
     <table id="outTabela">
         <tr>
             <th>Aluno</th>
@@ -38,6 +40,6 @@
     </table>
     <link rel="stylesheet" href="/Stylesheet/tabela.css">
     <script src="/JavaScript/dados.js"></script>
-    <script src="/JavaScript/switch-aprovados.js"></script>
+    <script src="/JavaScript/codigos-tabelas.js"></script>
 </body>
 </html>
