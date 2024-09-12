@@ -38,7 +38,6 @@ function funSelect() {
   trColunas.appendChild(initTdFalta);
   trColunas.appendChild(initTdResultado);
   outTabela.appendChild(trColunas);
-
   for (var i = 0; i < vetAluno.length; i++) {
     let listAlunos = vetAluno[i];
     let listCursos = vetCurso[i];
@@ -180,7 +179,6 @@ function pesquisaNomes() {
     let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
     if (inCheckbox.checked == true) {
       if (listAlunos.includes(filtroNome) && Aprovado == outAprovado && listCursos.includes(inSelect.value)) {
-        let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
         let tdCursos = document.createElement("td");
@@ -199,7 +197,6 @@ function pesquisaNomes() {
         tdMedia.textContent = mediaPonderada.toFixed(2)
         tdFalta.textContent = listFaltas
         tdResultado.textContent = outAprovado
-
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -208,7 +205,6 @@ function pesquisaNomes() {
         trTabela.appendChild(tdMedia);
         trTabela.appendChild(tdFalta);
         trTabela.appendChild(tdResultado);
-
         //monta a tabela
         outTabela.appendChild(trTabela);
       }
@@ -234,7 +230,6 @@ function pesquisaNomes() {
         tdMedia.textContent = mediaPonderada.toFixed(2);
         tdFalta.textContent = listFaltas;
         tdResultado.textContent = outAprovado;
-
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -243,7 +238,6 @@ function pesquisaNomes() {
         trTabela.appendChild(tdMedia);
         trTabela.appendChild(tdFalta);
         trTabela.appendChild(tdResultado);
-
         //monta a tabela
         outTabela.appendChild(trTabela);
       }
@@ -281,7 +275,6 @@ function pesquisaCursos() {
   trColunas.appendChild(initTdFalta);
   trColunas.appendChild(initTdResultado);
   outTabela.appendChild(trColunas);
-
   for (var i = 0; i < vetAluno.length; i++) {
     //guarda o elemento presente no index no valor i atual
     let listAlunos = vetAluno[i];
