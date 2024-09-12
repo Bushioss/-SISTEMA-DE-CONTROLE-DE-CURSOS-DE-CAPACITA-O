@@ -179,7 +179,7 @@ function pesquisaNomes() {
     }
     let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
     if (inCheckbox.checked == true) {
-      if (listAlunos.includes(filtroNome) && Aprovado == outAprovado) {
+      if (listAlunos.includes(filtroNome) && Aprovado == outAprovado && listCursos.includes(inSelect.value)) {
         let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
@@ -214,7 +214,7 @@ function pesquisaNomes() {
       }
     }
     else {
-      if (listAlunos.includes(filtroNome)) {
+      if (listAlunos.includes(filtroNome) && listCursos.includes(inSelect.value)) {
         let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
