@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet/reset.css">
+    <link rel="stylesheet" href="stylesheet/style-geral.css">
+    <link rel="stylesheet" href="stylesheet/style-controleFrequencia.css">
+    <link rel="icon" type="image/x-icon" href="Imagens-geral/fav-icon-branco.png">
+    <title>Frequência</title>
+</head>
+
+<body>
+    <header>
+        <div class="caixa">
+            <a href="home.html"><img src="Imagens-geral/Logo Original Vertical_1.jpg" alt="logo.Owl-Cursos"></a>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="controleFrequencia.html">Frequência</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="divTabela">
+            <h3>Selecione a Matéria:</h3>
+            <select id="seletor">
+                <option value="" selected> Todas </option>
+            </select>
+            <input type="checkbox" class="checkbox" id="checkbox" value="aprovados">
+            <label for="aprovados" class="aprovadoslabel">Apenas Aprovados</label>
+            <button id="btEnviar" class="btEnviar2">Buscar</button>
+            <input type="text" id="inPesquisaNome" class="inputTexto" placeholder="Filtrar por nome" oninput="pesquisaNomes()">
+            <input type="text" id="inBuscaCurso" class="inputTexto" placeholder="Filtrar por matéria" oninput="pesquisaCursos()">
+            <table id="outTabela">
+            </table>
+        </div>
+    </main>
+    <footer>
+        <img src="Imagens-geral/Logo Branca Vertical_1.png">
+        <p class="copyright">&copy; Copyright Owl Cursos</p>
+    </footer>
+    <link rel="stylesheet" href="/stylesheet/style-tabela.css">
+    <script src="/JavaScript/dados.js"></script>
+    <script src="/JavaScript/codigos-tabelas.js"></script>
+</body>
+
+</html>
