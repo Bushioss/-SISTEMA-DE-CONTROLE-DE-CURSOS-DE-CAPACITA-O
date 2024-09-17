@@ -4,61 +4,77 @@ const btEnviar = document.getElementById('btEnviar');
 const inBuscaNome = document.getElementById('inPesquisaNome');
 const inBuscaCurso = document.getElementById('inBuscaCurso');
 const outTabela = document.getElementById("outTabela");
+const outSeletor = document.getElementById("seletor");
 
 var Aprovado = 'Aprovado';
 
 btEnviar.addEventListener("click", funSelect);
-
+//função que cria as opções do select no html.
+function opcoesSelect(){
+  //vai percorrer no comprimento do cursosLista e criar uma nova opção para cada curso, inserindo o valor da opção e o texto e no final alocando a nova opção criada no seletor lá no HTML.
+  cursosLista = vetCurso.filter((item, index, arr) => arr.indexOf(item) == index);
+  for(let i = 0; i < cursosLista.length; i++) {
+    let novaOption = document.createElement("option");
+    novaOption.textContent = cursosLista[i];
+    novaOption.value = cursosLista[i];
+    outSeletor.appendChild(novaOption);
+    }
+}
+//executa a função uma vez para as opções serem carregadas.
+opcoesSelect();
+function criarTh(){
+    //gera as colunas da tabela
+    outTabela.innerHTML = "";
+    let trColunas = document.createElement("tr");
+    let initTdAlunos = document.createElement("th");
+    let initTdCursos = document.createElement("th");
+    let initTdProva1 = document.createElement("th");
+    let initTdProva2 = document.createElement("th");
+    let initTdParticipacao = document.createElement("th");
+    let initTdMedia = document.createElement("th");
+    let initTdFalta = document.createElement("th");
+    let initTdResultado = document.createElement("th");
+    initTdAlunos.textContent = "Nome";
+    initTdCursos.textContent = "Curso";
+    initTdProva1.textContent = "Nota 1";
+    initTdProva2.textContent = "Nota 2";
+    initTdParticipacao.textContent = "Participação";
+    initTdMedia.textContent = "Média Ponderada";
+    initTdFalta.textContent = "% Faltas";
+    initTdResultado.textContent = "Resultado";
+    trColunas.appendChild(initTdAlunos);
+    trColunas.appendChild(initTdCursos);
+    trColunas.appendChild(initTdProva1);
+    trColunas.appendChild(initTdProva2);
+    trColunas.appendChild(initTdParticipacao);
+    trColunas.appendChild(initTdMedia);
+    trColunas.appendChild(initTdFalta);
+    trColunas.appendChild(initTdResultado);
+    outTabela.appendChild(trColunas);
+}
 function funSelect() {
-  //gera as colunas da tabela
-  outTabela.innerHTML = "";
-  let trColunas = document.createElement("tr");
-  let initTdAlunos = document.createElement("td");
-  let initTdCursos = document.createElement("td");
-  let initTdProva1 = document.createElement("td");
-  let initTdProva2 = document.createElement("td");
-  let initTdParticipacao = document.createElement("td");
-  let initTdMedia = document.createElement("td");
-  let initTdFalta = document.createElement("td");
-  let initTdResultado = document.createElement("td");
-  initTdAlunos.textContent = "Nome";
-  initTdCursos.textContent = "Curso";
-  initTdProva1.textContent = "Nota 1";
-  initTdProva2.textContent = "Nota 2";
-  initTdParticipacao.textContent = "Participação";
-  initTdMedia.textContent = "Média Ponderada";
-  initTdFalta.textContent = "% Faltas";
-  initTdResultado.textContent = "Resultado";
-  trColunas.appendChild(initTdAlunos);
-  trColunas.appendChild(initTdCursos);
-  trColunas.appendChild(initTdProva1);
-  trColunas.appendChild(initTdProva2);
-  trColunas.appendChild(initTdParticipacao);
-  trColunas.appendChild(initTdMedia);
-  trColunas.appendChild(initTdFalta);
-  trColunas.appendChild(initTdResultado);
-  outTabela.appendChild(trColunas);
+  criarTh();
   for (var i = 0; i < vetAluno.length; i++) {
-    let listAlunos = vetAluno[i];
-    let listCursos = vetCurso[i];
-    let listProva1 = vetProva1[i];
-    let listProva2 = vetProva2[i];
-    let listParticipacao = vetParticipacao[i];
-    let listFaltas = vetFalta[i];
+    let nomeAluno = vetAluno[i];
+    let cursoAtual = vetCurso[i];
+    let resultProva1 = vetProva1[i];
+    let resultProva2 = vetProva2[i];
+    let resultParticipacao = vetParticipacao[i];
+    let numFaltas = vetFalta[i];
     //transforma os dados em Number para o calculo da média ponderada
-    listProva1 = Number(listProva1);
-    listProva2 = Number(listProva2);
-    listParticipacao = Number(listParticipacao);
+    resultProva1 = Number(resultProva1);
+    resultProva2 = Number(resultProva2);
+    resultParticipacao = Number(resultParticipacao);
     //calcula  a média
-    let mediaPonderada = (listProva1 * 0.2 + listProva2 * 0.4 + listParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
+    let mediaPonderada = (resultProva1 * 0.2 + resultProva2 * 0.4 + resultParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
     let estaAprovado = false;
-    if (listFaltas >= 13) {
+    if (numFaltas >= 13) {
     } else if (mediaPonderada >= 60) {
       estaAprovado = true
     }
-    let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
+    let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado (usando ternário)
     if (inCheckbox.checked == true) {
-      if (listCursos.includes(inSelect.value) && Aprovado == outAprovado) {
+      if (cursoAtual.includes(inSelect.value) && Aprovado == resultadoDoAluno) {
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
         let tdCursos = document.createElement("td");
@@ -69,14 +85,14 @@ function funSelect() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados
-        tdAlunos.textContent = listAlunos;
-        tdCursos.textContent = listCursos;
-        tdProva1.textContent = listProva1;
-        tdProva2.textContent = listProva2;
-        tdParticipacao.textContent = listParticipacao;
+        tdAlunos.textContent = nomeAluno;
+        tdCursos.textContent = cursoAtual;
+        tdProva1.textContent = resultProva1;
+        tdProva2.textContent = resultProva2;
+        tdParticipacao.textContent = resultParticipacao;
         tdMedia.textContent = mediaPonderada.toFixed(2);
-        tdFalta.textContent = listFaltas;
-        tdResultado.textContent = outAprovado;
+        tdFalta.textContent = numFaltas;
+        tdResultado.textContent = resultadoDoAluno;
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -90,7 +106,7 @@ function funSelect() {
       }
     }
     else {
-      if (listCursos.includes(inSelect.value)) {
+      if (cursoAtual.includes(inSelect.value)) {
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
         let tdCursos = document.createElement("td");
@@ -101,14 +117,14 @@ function funSelect() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados;
-        tdAlunos.textContent = listAlunos;
-        tdCursos.textContent = listCursos;
-        tdProva1.textContent = listProva1;
-        tdProva2.textContent = listProva2;
-        tdParticipacao.textContent = listParticipacao;
+        tdAlunos.textContent = nomeAluno;
+        tdCursos.textContent = cursoAtual;
+        tdProva1.textContent = resultProva1;
+        tdProva2.textContent = resultProva2;
+        tdParticipacao.textContent = resultParticipacao;
         tdMedia.textContent = mediaPonderada.toFixed(2);
-        tdFalta.textContent = listFaltas;
-        tdResultado.textContent = outAprovado;
+        tdFalta.textContent = numFaltas;
+        tdResultado.textContent = resultadoDoAluno;
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -123,62 +139,33 @@ function funSelect() {
     }
   }
 }
-
 function pesquisaNomes() {
-  //cria a primeira linha da tabela com Nome/Curso/nota1...
-  outTabela.innerHTML = "";
-  let trColunas = document.createElement("tr");
-  let initTdAlunos = document.createElement("td");
-  let initTdCursos = document.createElement("td");
-  let initTdProva1 = document.createElement("td");
-  let initTdProva2 = document.createElement("td");
-  let initTdParticipacao = document.createElement("td");
-  let initTdMedia = document.createElement("td");
-  let initTdFalta = document.createElement("td");
-  let initTdResultado = document.createElement("td");
-  initTdAlunos.textContent = "Nome";
-  initTdCursos.textContent = "Curso";
-  initTdProva1.textContent = "Nota 1";
-  initTdProva2.textContent = "Nota 2";
-  initTdParticipacao.textContent = "Participação";
-  initTdMedia.textContent = "Média Ponderada";
-  initTdFalta.textContent = "% Faltas";
-  initTdResultado.textContent = "Resultado";
-  trColunas.appendChild(initTdAlunos);
-  trColunas.appendChild(initTdCursos);
-  trColunas.appendChild(initTdProva1);
-  trColunas.appendChild(initTdProva2);
-  trColunas.appendChild(initTdParticipacao);
-  trColunas.appendChild(initTdMedia);
-  trColunas.appendChild(initTdFalta);
-  trColunas.appendChild(initTdResultado);
-  outTabela.appendChild(trColunas);
-
+  criarTh();
   for (var i = 0; i < vetAluno.length; i++) {
     //guarda o elemento presente no index no valor i atual
-    let listAlunos = vetAluno[i];
-    let listCursos = vetCurso[i];
-    let listProva1 = vetProva1[i];
-    let listProva2 = vetProva2[i];
-    let listParticipacao = vetParticipacao[i];
-    let listFaltas = vetFalta[i];
-    //transforma o elemento atual em listAlunos e  todo pra maiusculo. Ex: karllos ==> KARLLOS 
-    listAlunos = listAlunos.toUpperCase()
+    let nomeAluno = vetAluno[i];
+    let cursoAtual = vetCurso[i];
+    let resultProva1 = vetProva1[i];
+    let resultProva2 = vetProva2[i];
+    let resultParticipacao = vetParticipacao[i];
+    let numFaltas = vetFalta[i];
+    //transforma o elemento atual em nomeAluno e  todo pra maiusculo. Ex: karllos ==> KARLLOS 
+    nomeAluno = nomeAluno.toUpperCase()
     var filtroNome = inBuscaNome.value.toUpperCase()
     //transforma os dados em Number para o calculo da média ponderada
-    listProva1 = Number(listProva1);
-    listProva2 = Number(listProva2);
-    listParticipacao = Number(listParticipacao);
+    resultProva1 = Number(resultProva1);
+    resultProva2 = Number(resultProva2);
+    resultParticipacao = Number(resultParticipacao);
     //calcula  a média
-    let mediaPonderada = (listProva1 * 0.2 + listProva2 * 0.4 + listParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
+    let mediaPonderada = (resultProva1 * 0.2 + resultProva2 * 0.4 + resultParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
     let estaAprovado = false;
-    if (listFaltas >= 13) {
+    if (numFaltas >= 13) {
     } else if (mediaPonderada >= 60) {
       estaAprovado = true
     }
-    let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
+    let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
     if (inCheckbox.checked == true) {
-      if (listAlunos.includes(filtroNome) && Aprovado == outAprovado && listCursos.includes(inSelect.value)) {
+      if (nomeAluno.includes(filtroNome) && Aprovado == resultadoDoAluno && cursoAtual.includes(inSelect.value)) {
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
         let tdCursos = document.createElement("td");
@@ -189,14 +176,14 @@ function pesquisaNomes() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados
-        tdAlunos.textContent = listAlunos
-        tdCursos.textContent = listCursos
-        tdProva1.textContent = listProva1
-        tdProva2.textContent = listProva2
-        tdParticipacao.textContent = listParticipacao
+        tdAlunos.textContent = nomeAluno
+        tdCursos.textContent = cursoAtual
+        tdProva1.textContent = resultProva1
+        tdProva2.textContent = resultProva2
+        tdParticipacao.textContent = resultParticipacao
         tdMedia.textContent = mediaPonderada.toFixed(2)
-        tdFalta.textContent = listFaltas
-        tdResultado.textContent = outAprovado
+        tdFalta.textContent = numFaltas
+        tdResultado.textContent = resultadoDoAluno
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -210,8 +197,8 @@ function pesquisaNomes() {
       }
     }
     else {
-      if (listAlunos.includes(filtroNome) && listCursos.includes(inSelect.value)) {
-        let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
+      if (nomeAluno.includes(filtroNome) && cursoAtual.includes(inSelect.value)) {
+        let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado') //resultado
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
         let tdCursos = document.createElement("td");
@@ -222,14 +209,14 @@ function pesquisaNomes() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados
-        tdAlunos.textContent = listAlunos;
-        tdCursos.textContent = listCursos;
-        tdProva1.textContent = listProva1;
-        tdProva2.textContent = listProva2;
-        tdParticipacao.textContent = listParticipacao;
+        tdAlunos.textContent = nomeAluno;
+        tdCursos.textContent = cursoAtual;
+        tdProva1.textContent = resultProva1;
+        tdProva2.textContent = resultProva2;
+        tdParticipacao.textContent = resultParticipacao;
         tdMedia.textContent = mediaPonderada.toFixed(2);
-        tdFalta.textContent = listFaltas;
-        tdResultado.textContent = outAprovado;
+        tdFalta.textContent = numFaltas;
+        tdResultado.textContent = resultadoDoAluno;
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
         trTabela.appendChild(tdProva1);
@@ -244,63 +231,36 @@ function pesquisaNomes() {
     }
   }
 }
-
 //função que irá montar a tabela de acordo com o filtro de cursos
 function pesquisaCursos() {
   //cria a primeira linha da tabela com Nome/Curso/nota1...
-  outTabela.innerHTML = ""
-  let trColunas = document.createElement("tr");
-  let initTdAlunos = document.createElement("td");
-  let initTdCursos = document.createElement("td");
-  let initTdProva1 = document.createElement("td");
-  let initTdProva2 = document.createElement("td");
-  let initTdParticipacao = document.createElement("td");
-  let initTdMedia = document.createElement("td");
-  let initTdFalta = document.createElement("td");
-  let initTdResultado = document.createElement("td");
-  initTdAlunos.textContent = "Nome";
-  initTdCursos.textContent = "Curso";
-  initTdProva1.textContent = "Nota 1";
-  initTdProva2.textContent = "Nota 2";
-  initTdParticipacao.textContent = "Participação";
-  initTdMedia.textContent = "Média Ponderada";
-  initTdFalta.textContent = "% Faltas";
-  initTdResultado.textContent = "Resultado";
-  trColunas.appendChild(initTdAlunos);
-  trColunas.appendChild(initTdCursos);
-  trColunas.appendChild(initTdProva1);
-  trColunas.appendChild(initTdProva2);
-  trColunas.appendChild(initTdParticipacao);
-  trColunas.appendChild(initTdMedia);
-  trColunas.appendChild(initTdFalta);
-  trColunas.appendChild(initTdResultado);
-  outTabela.appendChild(trColunas);
+  criarTh();
   for (var i = 0; i < vetAluno.length; i++) {
     //guarda o elemento presente no index no valor i atual
-    let listAlunos = vetAluno[i];
-    let listCursos = vetCurso[i];
-    let listProva1 = vetProva1[i];
-    let listProva2 = vetProva2[i];
-    let listParticipacao = vetParticipacao[i];
-    let listFaltas = vetFalta[i];
-    //transforma o elemento atual em listAlunos e  todo pra maiusculo. Ex: karllos ==> KARLLOS 
-    listCursos = listCursos.toUpperCase()
+    let nomeAluno = vetAluno[i];
+    let cursoAtual = vetCurso[i];
+    let resultProva1 = vetProva1[i];
+    let resultProva2 = vetProva2[i];
+    let resultParticipacao = vetParticipacao[i];
+    let numFaltas = vetFalta[i];
+    //transforma o elemento atual em nomeAluno e  todo pra maiusculo. Ex: karllos ==> KARLLOS 
+    cursoAtual = cursoAtual.toUpperCase()
     var cursosLista = inBuscaCurso.value.toUpperCase()
     //transforma os dados em Number para o calculo da média ponderada
     let estaAprovado = false;
-    listProva1 = Number(listProva1);
-    listProva2 = Number(listProva2);
-    listParticipacao = Number(listParticipacao);
+    resultProva1 = Number(resultProva1);
+    resultProva2 = Number(resultProva2);
+    resultParticipacao = Number(resultParticipacao);
     //calcula  a média
-    let outMedia = (listProva1 * 0.2 + listProva2 * 0.4 + listParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
+    let outMedia = (resultProva1 * 0.2 + resultProva2 * 0.4 + resultParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
     //compara as faltas para ter o resultado final
-    if (listFaltas >= 13) {
+    if (numFaltas >= 13) {
     } else if (outMedia >= 60) {
       estaAprovado = true;
     }
-    let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado');
+    let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado');
     if (inCheckbox.checked == true){
-      if (listCursos.includes(cursosLista) && Aprovado == outAprovado) {
+      if (cursoAtual.includes(cursosLista) && Aprovado == resultadoDoAluno) {
         //cria a linha da tabela e as células 
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
@@ -312,14 +272,14 @@ function pesquisaCursos() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados no index de i
-        tdAlunos.textContent = listAlunos;
-        tdCursos.textContent = listCursos;
-        tdProva1.textContent = listProva1;
-        tdProva2.textContent = listProva2;
-        tdParticipacao.textContent = listParticipacao;
+        tdAlunos.textContent = nomeAluno;
+        tdCursos.textContent = cursoAtual;
+        tdProva1.textContent = resultProva1;
+        tdProva2.textContent = resultProva2;
+        tdParticipacao.textContent = resultParticipacao;
         tdMedia.textContent = outMedia.toFixed(2);
-        tdFalta.textContent = listFaltas;
-        tdResultado.textContent = outAprovado;
+        tdFalta.textContent = numFaltas;
+        tdResultado.textContent = resultadoDoAluno;
         //preenche a linha com as células
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
@@ -334,19 +294,19 @@ function pesquisaCursos() {
       }
     }
     else {
-      if (listCursos.includes(cursosLista)) {
-        listProva1 = Number(listProva1);
-        listProva2 = Number(listProva2);
-        listParticipacao = Number(listParticipacao);
+      if (cursoAtual.includes(cursosLista)) {
+        resultProva1 = Number(resultProva1);
+        resultProva2 = Number(resultProva2);
+        resultParticipacao = Number(resultParticipacao);
         //calcula  a média
-        let outMedia = (listProva1 * 0.2 + listProva2 * 0.4 + listParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
+        let outMedia = (resultProva1 * 0.2 + resultProva2 * 0.4 + resultParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
         let estaAprovado = false;
         //compara as faltas para ter o resultado final
-        if (listFaltas >= 13) {
+        if (numFaltas >= 13) {
         } else if (outMedia >= 60) {
           estaAprovado = true;
         }
-        let outAprovado = (estaAprovado ? 'Aprovado' : 'Reprovado')
+        let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado')
         //cria a linha da tabela e as células 
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
@@ -358,14 +318,14 @@ function pesquisaCursos() {
         let tdFalta = document.createElement("td");
         let tdResultado = document.createElement("td");
         //preenche as célucas com os dados no index de i
-        tdAlunos.textContent = listAlunos;
-        tdCursos.textContent = listCursos;
-        tdProva1.textContent = listProva1;
-        tdProva2.textContent = listProva2;
-        tdParticipacao.textContent = listParticipacao;
+        tdAlunos.textContent = nomeAluno;
+        tdCursos.textContent = cursoAtual;
+        tdProva1.textContent = resultProva1;
+        tdProva2.textContent = resultProva2;
+        tdParticipacao.textContent = resultParticipacao;
         tdMedia.textContent = outMedia.toFixed(2);
-        tdFalta.textContent = listFaltas;
-        tdResultado.textContent = outAprovado;
+        tdFalta.textContent = numFaltas;
+        tdResultado.textContent = resultadoDoAluno;
         //preenche a linha com as células
         trTabela.appendChild(tdAlunos);
         trTabela.appendChild(tdCursos);
