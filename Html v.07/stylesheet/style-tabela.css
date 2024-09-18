@@ -1,0 +1,66 @@
+/* TABELA EXCLUSIVAMENTE PARA A ESTILIZAÇÃO DA TABELA DO INDEX */
+th{
+    border: 1px solid black;
+    padding: 1px;
+    text-align: center;
+}
+tr{
+    border: 1px solid black;
+    padding: 1px;
+    text-align: center;
+}
+td{
+    border: 1px solid black;
+    padding: 1px;
+    text-align: center;
+}
+tr:nth-child(even){ 
+        background-color: rgba(141, 178, 233, 0.39);
+}
+tr:nth-child(odd){ 
+    background-color: rgb(255, 255, 255);
+}
+.divTabela{
+    width: 940px;
+    position: relative;
+    margin: 0 auto;
+    padding: 60px; 
+}
+.inputTexto{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 6px 6px;
+    font-size: 16px;
+    color: #212529;
+    border: 1px solid #c6c6c7;
+    border-radius: 4px;
+}
+button{
+    font-size: 16px;
+    background-color: rgb(83, 120, 240);
+    border: #061466b2 solid 2px;
+    border-radius: 1.5px;
+    color: rgb(255, 255, 255);
+    padding: 2px;
+    
+}
+button:hover{
+    font-size: 16px;
+    background-color: rgb(8, 11, 197);
+}
+select{
+    background-color: white;
+    font-size: 16px;
+    border: rgb(182, 179, 179)  solid 2px;
+    border-radius: 1.5px;
+    color: black;
+    padding:2px
+}
+h3{
+    font-weight: bold;
+    font-size: 20px;
+}
+checkbox{
+    margin-left: 5px;
+    margin-right: 5px;
+}
