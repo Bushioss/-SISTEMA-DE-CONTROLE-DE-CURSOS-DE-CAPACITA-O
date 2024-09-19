@@ -23,7 +23,6 @@ tr:nth-child(odd){
 .divTabela{
     width: 940px;
     position: relative;
-    margin: 0 auto;
     padding: 60px; 
 }
 .inputTexto{

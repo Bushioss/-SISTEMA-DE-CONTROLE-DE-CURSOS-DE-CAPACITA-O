@@ -1,3 +1,28 @@
 main{
     margin-bottom: 600px;
+    margin-left: 19%;
+    margin-right: 19%;
+}
+.btEnviar2 {  
+    padding: 5px;
+    background-color: #1d2c50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btEnviar2:hover {
+    background-color: #1d2c50;
+    color: #d6d84e;
+    transform: scale(1.2);
+}
+.aprovadoslabel{
+    font-size: 16px;
+    font-weight: bold;
+    color: #1d2c50;
+}
+.div, h3{
+    font-size: 16px;
+    font-weight: bold;
+    color: #1d2c50;
 }
