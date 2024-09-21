@@ -4,11 +4,11 @@ const btEnviar = document.getElementById('btEnviar');
 const inBuscaNome = document.getElementById('inPesquisaNome');
 const inBuscaCurso = document.getElementById('inBuscaCurso');
 const outTabela = document.getElementById("outTabela");
-const outSeletor = document.getElementById("seletor");
 
 var Aprovado = 'Aprovado';
 
 btEnviar.addEventListener("click", funSelect);
+
 //função que cria as opções do select no html.
 function opcoesSelect() {
   //cria novo vetor onde os cursos serão guardados nesse vetor apenas uma vez
@@ -22,7 +22,7 @@ function opcoesSelect() {
     let novaOption = document.createElement("option");
     novaOption.textContent = vetCursosLista[i];
     novaOption.value = vetCursosLista[i];
-    outSeletor.appendChild(novaOption);
+    inSelect.appendChild(novaOption);
   }
 }
 //executa a função uma vez para as opções serem carregadas.
@@ -300,18 +300,6 @@ function pesquisaCursos() {
     }
     else {
       if (cursoAtual.includes(cursosLista)) {
-        resultProva1 = Number(resultProva1);
-        resultProva2 = Number(resultProva2);
-        resultParticipacao = Number(resultParticipacao);
-        //calcula  a média
-        let outMedia = (resultProva1 * 0.2 + resultProva2 * 0.4 + resultParticipacao * 0.4) / (0.2 + 0.4 + 0.4);
-        let estaAprovado = false;
-        //compara as faltas para ter o resultado final
-        if (numFaltas >= 13) {
-        } else if (outMedia >= 60) {
-          estaAprovado = true;
-        }
-        let resultadoDoAluno = (estaAprovado ? 'Aprovado' : 'Reprovado')
         //cria a linha da tabela e as células 
         let trTabela = document.createElement("tr");
         let tdAlunos = document.createElement("td");
